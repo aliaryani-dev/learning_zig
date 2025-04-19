@@ -1,4 +1,5 @@
 const std = @import("std");
+const stdout = std.io.getStdOut;
 
 pub fn main() !void {
     const age = 25; //this is immutable
@@ -35,6 +36,7 @@ pub fn main() !void {
     const ns = [4]u8{ 48, 22, 73, 14 }; // 4 elenments, type: u8
     const ls = [_]f16{ 14.2, 17.3, 55.6 }; // let the compiler count !
     // arrays are static
-    _ = ns;
     _ = ls;
+
+    std.debug.print("{d}", .{ns[2]});
 }
