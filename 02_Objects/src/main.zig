@@ -22,4 +22,19 @@ pub fn main() !void {
     // a var shall always be mutated, otherwise it shall be a const
     // var where_I_live = "127.0.0.1";
     // std.debug.print("{} is a var", .{where_I_live});
+
+    // data types :
+    // unsigned integers : u8 u16 u32 u64 u128
+    // signed untegers : i8 i16 i32 i64 i128
+    // float numbers : f16 f32 f64 f128
+    // Boolean : bool
+    // C ABI compatible types: c_long, c_char, c_short, c_ushort, c_int, c_uint, and many others.
+    // Pointer sized integers: isize and usize.
+
+    // Arrays :
+    const ns = [4]u8{ 48, 22, 73, 14 }; // 4 elenments, type: u8
+    const ls = [_]f16{ 14.2, 17.3, 55.6 }; // let the compiler count !
+    // arrays are static
+    _ = ns;
+    _ = ls;
 }
