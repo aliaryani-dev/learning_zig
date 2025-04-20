@@ -37,6 +37,9 @@ pub fn main() !void {
     const ls = [_]f16{ 14.2, 17.3, 55.6 }; // let the compiler count !
     // arrays are static
     _ = ls;
+    // you can also call a slice of an array
+    const sn = ns[0..2];
+    _ = sn;
 
     std.debug.print("{d}", .{ns[2]});
 }
