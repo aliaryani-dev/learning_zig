@@ -1,5 +1,5 @@
 const std = @import("std");
-const stdout = std.io.getStdOut;
+// const stdout = std.io.getStdOut;
 
 pub fn main() !void {
     const age = 25; //this is immutable
@@ -41,5 +41,14 @@ pub fn main() !void {
     const sn = ns[0..2];
     _ = sn;
 
-    std.debug.print("{d}", .{ns[2]});
+    std.debug.print("{d}\n", .{ns[2]});
+
+    // array operators :
+    // these only work while using compile time known arrays
+    const a = [_]u8{ 1, 2, 3 };
+    const b = [_]u8{ 4, 5, 6 };
+    const c = a ++ b; //concatination operator
+    const d = a ** 5; //multipication operator
+    std.debug.print("{any}\n", .{c});
+    std.debug.print("{any} \n", .{d});
 }
