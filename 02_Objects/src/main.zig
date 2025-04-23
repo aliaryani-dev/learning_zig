@@ -1,16 +1,17 @@
 const std = @import("std");
+const stdout = std.io.getStdOut().writer();
 // const stdout = std.io.getStdOut;
 
 pub fn main() !void {
     const age = 25; //this is immutable
     // want some errors ? try this !
     // age = 24;
-    std.debug.print("age = {} \n", .{age});
+    try stdout.print("age = {} \n", .{age});
 
     var birth_year: u32 = 1945; //this is mutable
 
     birth_year = 1984;
-    std.debug.print("birth year is : {}\n", .{birth_year});
+    try stdout.print("birth year is : {}\n", .{birth_year});
 
     var num: u8 = undefined; // undefined shall not be used , it can cause undefined problems !
     num = 8;
@@ -41,7 +42,7 @@ pub fn main() !void {
     const sn = ns[0..2];
     _ = sn;
 
-    std.debug.print("{d}\n", .{ns[2]});
+    try stdout.print("{d}\n", .{ns[2]});
 
     // array operators :
     // these only work while using compile time known arrays
@@ -49,6 +50,6 @@ pub fn main() !void {
     const b = [_]u8{ 4, 5, 6 };
     const c = a ++ b; //concatination operator
     const d = a ** 5; //multipication operator
-    std.debug.print("{any}\n", .{c});
-    std.debug.print("{any} \n", .{d});
+    try stdout.print("{any}\n", .{c});
+    try stdout.print("{any} \n", .{d});
 }
