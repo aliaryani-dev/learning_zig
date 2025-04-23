@@ -52,4 +52,16 @@ pub fn main() !void {
     const d = a ** 5; //multipication operator
     try stdout.print("{any}\n", .{c});
     try stdout.print("{any} \n", .{d});
+
+    // Labelled blocks
+
+    var y: i32 = 123;
+    const x = add_one: { //we gave a label to this block
+        y += 1;
+        break :add_one y; // by using break followed by the label, we can return a value from this block
+    };
+
+    if (x == 124 and y == 124) {
+        try stdout.print("Hey , it worked !\n", .{});
+    }
 }
