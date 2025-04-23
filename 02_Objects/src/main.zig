@@ -64,4 +64,14 @@ pub fn main() !void {
     if (x == 124 and y == 124) {
         try stdout.print("Hey , it worked !\n", .{});
     }
+
+    // Strings
+    //strings in Zig are actually arrays !
+    const string_object = "An example string in Zig"; // this is an array made of u8 !
+
+    try stdout.print("{d}\n", .{string_object.len}); // it has a length , it's an array , it's safe.
+    // and even more clarification ...
+    const bytes = [_]u8{ 0x48, 0x65, 0x6C, 0x6C, 0x6F }; // i.e. {H,e,l,l,o}
+
+    try stdout.print("bytes = {s}\n", .{bytes}); // bytes - Hello
 }
