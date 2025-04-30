@@ -83,4 +83,11 @@ pub fn main() !void {
     // A string can also be iterpreted as slices !
     const str: []const u8 = "hello world !";
     try stdout.print("{any}\n", .{@TypeOf(str)});
+
+    // Iterating through a string
+    const iter_str = "example text for iteration";
+    try stdout.print("Bytes that represent the string :", .{});
+    for (iter_str) |byte| {
+        try stdout.print("{X} ", .{byte});
+    }
 }
