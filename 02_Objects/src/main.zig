@@ -90,4 +90,6 @@ pub fn main() !void {
     for (iter_str) |byte| {
         try stdout.print("{X} ", .{byte});
     }
+
+    // Chapter 1 is over , finally ! ...
 }
