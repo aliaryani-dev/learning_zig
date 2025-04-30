@@ -74,4 +74,13 @@ pub fn main() !void {
     const bytes = [_]u8{ 0x48, 0x65, 0x6C, 0x6C, 0x6F }; // i.e. {H,e,l,l,o}
 
     try stdout.print("bytes = {s}\n", .{bytes}); // bytes - Hello
+
+    // sentinel-terminated arrays
+    _ = "A Literal Value";
+    try stdout.print("{any}\n", .{@TypeOf("A Literal Value")});
+    //in simple words , this helps Zig find the end of an array , without needing len
+
+    // A string can also be iterpreted as slices !
+    const str: []const u8 = "hello world !";
+    try stdout.print("{any}\n", .{@TypeOf(str)});
 }
