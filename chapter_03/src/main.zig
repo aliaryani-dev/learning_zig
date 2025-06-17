@@ -2,6 +2,27 @@ const std = @import("std");
 const stdout = std.io.getStdOut().writer();
 const Role = enum { SE, DPE, DE, DA, PM, PO, KS };
 
+
+fn defer_fn() !void {
+    defer std.debug.print ("exiting funcion ...\n", .{});
+    //? defer will be executed at the end of the scope.
+    try stdout.print ("Adding stuff ...\n", .{});
+    const x: u8 = 2 + 2; _ = x;
+    try stdout.print ("Multiplying stuff ...\n", .{});
+    const y: u8 = 2 * 2; _ = y;
+}
+
+fn errdiffer_fn() !void {
+    var i: usize = 1;
+    std.debug.print ("Value of i : {d}\n", .{i});
+    defer i = 2;
+    try errrdiffer();
+}
+
+fn errrdiffer () !void {
+    return error.FooError;
+}
+
 pub fn main() !void {
     //* Control Flow
     //? If/else statements
@@ -49,7 +70,7 @@ pub fn main() !void {
             continue :xsw 2;
         },
         2 => continue :xsw 3,
-        3 => return,
+        // 3 => return,
         4 => {},
         else => {
             try stdout.print("Unmatched case {d}\n", .{@as(u8, 1)});
@@ -57,4 +78,21 @@ pub fn main() !void {
     }
 
     //? `differ` keyword
+    try defer_fn();
+
+    // ? `errdiffer` 
+    // errdiffer_fn()
+    // I got some errors, simply this executes when an error occurs.
+    
+    //? `for` loops
+
+    const name = [_]u8{'H','a','n','n','i','b','a','l'};
+    for (name) |value| {
+        try stdout.print ("{d} |", .{value});
+    }
+
+    const name2 = "Ali";
+    for (name2, 0..) |character, i| {
+        try stdout.print ("{any} - {d}\n", .{character , i});
+    }
 }
