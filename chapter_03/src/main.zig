@@ -95,4 +95,27 @@ pub fn main() !void {
     for (name2, 0..) |character, i| {
         try stdout.print ("{any} - {d}\n", .{character , i});
     }
+
+    //? `while` loops
+    var while_count: u8 = 5;
+    while (while_count>0){
+        try stdout.print("{d}\n", .{while_count});
+        while_count -= 1;
+    }
+    // zig is more interesting than that !
+    while (while_count < 5) : (while_count += 1) {
+        try stdout.print ("{d}\n", .{while_count});
+    }
+
+    //? using `break` and `continue`
+    var the_counter: u8 = 1;
+    while (true) {
+        if (the_counter == 10) {
+            break;
+        }
+        the_counter += 1;
+    }
+    try std.testing.expect (the_counter == 10);
+    try stdout.print ("Everything worked here !\n", .{});
+    // `continue is used so that one iteration is skipped.
 }
