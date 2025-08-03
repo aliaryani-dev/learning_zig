@@ -1,3 +1,4 @@
+<strong>got bored of this language. Just wanted to get familiar with some of its ideas. I'm moving to C++. Goodbye Zig</strong>
 # What is this ❓
 In my journey of learning Zig,<br>
 I will use https://github.com/pedropark99/zig-book for learning,<br>
