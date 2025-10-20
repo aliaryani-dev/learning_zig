@@ -1,8 +1,10 @@
 const std = @import("std");
-const stdout = std.io.getStdOut().writer();
-// const stdout = std.io.getStdOut;
 
 pub fn main() !void {
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+    const stdout = &stdout_writer.interface;
+    
     const age = 25; //this is immutable
     // want some errors ? try this !
     // age = 24;
@@ -90,6 +92,8 @@ pub fn main() !void {
     for (iter_str) |byte| {
         try stdout.print("{X} ", .{byte});
     }
+
+    try stdout.flush();
 
     // Chapter 1 is over , finally ! ...
 }
