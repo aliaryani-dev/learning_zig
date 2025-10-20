@@ -1,5 +1,7 @@
 const std = @import("std");
-const stdout = std.io.getStdOut().writer();
+var stdout_buffer:[1024]u8 = undefined;
+var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+const stdout = &stdout_writer.interface;
 const Role = enum { SE, DPE, DE, DA, PM, PO, KS };
 
 
@@ -117,5 +119,7 @@ pub fn main() !void {
     }
     try std.testing.expect (the_counter == 10);
     try stdout.print ("Everything worked here !\n", .{});
+
+    try stdout.flush();
     // `continue is used so that one iteration is skipped.
 }
