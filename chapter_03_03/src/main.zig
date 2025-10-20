@@ -1,5 +1,7 @@
 const std = @import("std");
-const stdout = std.io.getStdOut().writer();
+var stdout_buffer: [1024]u8 = undefined;
+var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+const stdout = &stdout_writer.interface;
 const user = @import("user.zig");
 const m = std.math;
 
@@ -55,4 +57,6 @@ pub fn main() !void {
     try stdout.print("v3 Old distance: {d}\n", .{v3.distance(v2)});
     v3.twice();
     try stdout.print("New distance: {d}\n", .{v3.distance(v2)});
+
+    try stdout.flush();
 }
