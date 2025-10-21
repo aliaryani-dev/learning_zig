@@ -1,5 +1,5 @@
 const std = @import ("std");
-const arena = @import ("arena");
+const arena = @import ("arena.zig");
 
 fn input_length(input: []const u8) usize {
     // input here is //* known at run time
@@ -20,7 +20,7 @@ pub fn main() !void {
     const some_number = try allocator.create (u32);
     defer allocator.destroy (some_number);
     
-    arena.arena_alloc();
+    try arena.arena_alloc();
 
     some_number.* = @as (u32, 45);
 }

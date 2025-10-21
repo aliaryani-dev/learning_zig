@@ -1,18 +1,20 @@
 const std = @import ("std");
-const stdin = std.io.getStdIn();
+var stdin_buffer:[1024]u8 = undefined;
+var stdin_writer = std.fs.File.stdin().reader(&stdin_buffer);
+const stdin = &stdin_writer.interface;
 
 pub fn main () !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
-    var input = allocator.alloc (u8, 50);
+    var input = try allocator.alloc (u8, 50);
     defer allocator.free (input);
-    for (0..input.len) |i| {
-        input[i] = 0;
-    }
+    @memset(input[0..], 0);
 
     // read user input
-    const reader = stdin.reader();
-    _ = try reader.readUntilDelimiterOrEof (input, '\n');
+    stdin.readSliceAll(input[0..]) catch |err| switch (err) {
+        error.EndOfStream => {},
+        else => return err,
+    };
 
     std.debug.print ("{s}\n", .{input});
 
